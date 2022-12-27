@@ -8,6 +8,7 @@ import { FoodEntriesPerEmail } from "./FoodEntriesPerEmail";
 import { MealEntriesPerEmail } from "./MealEntriesPerEmail";
 import FoodEntryList from "./FoodEntryList";
 import { motion } from "framer-motion";
+import EntryListAdmin from "../Admin/EntryListAdmin";
 
 const UserEntry = ({ sessionUser }) => {
   const sessionEmail = sessionUser?.email;
@@ -30,6 +31,21 @@ const UserEntry = ({ sessionUser }) => {
     { mealID: "2", mealName: "Lunch", currEntry: 0, maxEntry: 3 },
     { mealID: "3", mealName: "Supper", currEntry: 0, maxEntry: 2 },
   ]);
+
+  let tempList = [];
+  tempList = MealDescription?.map((mealItem) => {
+    let { mealName, ...rest } = mealItem;
+    let { currEntry, ...restMealDescription } = mealItem;
+    if (mealName === "Breakfast")
+      return { ...restMealDescription, currEntry: breakfastCount };
+
+    if (mealName === "Lunch")
+      return { ...restMealDescription, currEntry: lunchCount };
+
+    if (mealName === "Supper")
+      return { ...restMealDescription, currEntry: supperCount };
+  });
+  
 
   if (isLoadingMeal || isLoading) {
     return <div>Loading Wrapper</div>;
@@ -71,12 +87,14 @@ const UserEntry = ({ sessionUser }) => {
               component={motion.div}
               whileHover={{
                 scale: 0.9,
-                transition: { duration: 0.7 }
+                transition: { duration: 0.7 },
               }}
               whileTap={{ scale: 0.85 }}
               onClick={() => setisEClicked(true)}
             >
-              <Typography sx={{ color: "#0f0303" }} variant="h5">Get Food Entry Form</Typography>
+              <Typography sx={{ color: "#0f0303" }} variant="h5">
+                Get Food Entry Form
+              </Typography>
             </Paper>
           )}
         </Paper>
@@ -129,6 +147,47 @@ const UserEntry = ({ sessionUser }) => {
             Here you can see all of your added food entries.
           </Typography>
         </Box>
+      </Box>
+
+      <Box
+        sx={{
+          marginTop: "20px",
+          display: "flex",
+          bgcolor: "#f5d0f7",
+        }}
+      >
+        <Box
+          sx={{
+            flex: 5,
+            margin: "20px",
+            padding: "20px",
+          }}
+        >
+          <Typography gutterBottom variant="h5" component="div">
+            Food Entry
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Here you can add foods with associated calorie value and other
+            informations.
+          </Typography>
+        </Box>
+
+        <Paper
+          elevation={10}
+          sx={{
+            flex: 5,
+            margin: "20px",
+            padding: "20px",
+          }}
+        >
+          <EntryListAdmin
+            foodRows={mealRows}
+            mutateEntry={mutateMeal}
+            apiType="user"
+            sessionUser={sessionUser}
+            MealDescription={tempList}
+          />
+        </Paper>
       </Box>
     </Box>
   );
