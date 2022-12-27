@@ -50,9 +50,6 @@ const Navbar = (props) => {
           FAHIM
         </Typography>
         <AdbRoundedIcon sx={{ display: {xs:"block",sm:"none"} }}/>
-        <Search>
-          <InputBase placeholder='search...'/>
-        </Search>
         <Icons>
         <Badge badgeContent={4} color="error">
             <Mail />

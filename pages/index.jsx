@@ -23,10 +23,7 @@ export default function Home() {
     <Box>
       
       <Navbar signOut={signOut}/>
-      <Box>
-        <p> {session.user.name} </p>
-        <button onClick={() => signOut()}>Sign Out</button>
-      </Box>
+
       <WrapperUser sessionUser={session.user} />
       
       
