@@ -3,6 +3,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import useSWR, { mutate, useSWRConfig } from "swr";
+import { mealCount } from "../../helper-functions/meal-count";
+import { mealFetchingURL } from "../../lib/urls/meal";
 
 const fetcherForUserInfo = (url, userEmail) =>
   axios
@@ -10,29 +12,8 @@ const fetcherForUserInfo = (url, userEmail) =>
     .then((response) => response.data);
 
 export const MealEntriesPerEmail =  (props) => {
-    const { data:mealEntriesPerEmail, error,mutate } = useSWR( ["/api/mealEntriesPerEmail", props.sessionEmail], fetcherForUserInfo);
-    let brkfst;
-    let lunch;
-    let supper;
-  
-    if (mealEntriesPerEmail) {
-      brkfst = mealEntriesPerEmail.filter(
-        (item) =>
-          item.Meal === "Breakfast"
-      ).length;
-  
-      lunch = mealEntriesPerEmail.filter(
-        (item) =>
-          item.Meal === "Lunch" 
-      ).length;
-  
-      supper = mealEntriesPerEmail.filter(
-        (item) =>
-          item.Meal === "Supper" 
-      ).length;
-    }
-  
-
+    const { data:mealEntriesPerEmail, error,mutate } = useSWR( [mealFetchingURL, props.sessionEmail], fetcherForUserInfo);
+    const [brkfst,lunch,supper] = mealCount(mealEntriesPerEmail);
     return {
       mealRows: mealEntriesPerEmail,
       isLoadingMeal: !error && !mealEntriesPerEmail ,
