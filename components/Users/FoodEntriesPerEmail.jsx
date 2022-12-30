@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import useSWR, { mutate, useSWRConfig } from "swr";
+import { foodFetchingURL } from "../../lib/urls/food";
 
 const fetcherForUserInfo = (url, userEmail) =>
   axios
@@ -16,7 +17,7 @@ export const FoodEntriesPerEmail = ( props ) => {
     error,
     isLoading,
     mutate: mutateFoodPerEmail,
-  } = useSWR(["/api/foodEntriesPerEmail",props.sessionEmail], fetcherForUserInfo);
+  } = useSWR([foodFetchingURL,props.email], fetcherForUserInfo);
  
   return {
     foodEntriesPerEmail: foodEntriesPerEmail,

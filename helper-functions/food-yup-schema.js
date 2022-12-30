@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 
 export const foodYupSchema = Yup.object().shape({
-    // email: Yup.string().email("Invalid email").required("Required"),
     foodName: Yup.string()
       .typeError(
         "Food Name must contain only letters. No number or Special Character"
@@ -23,3 +22,5 @@ export const foodYupSchema = Yup.object().shape({
         "Select From Menu According to Max Number"
       ),
   });
+
+  

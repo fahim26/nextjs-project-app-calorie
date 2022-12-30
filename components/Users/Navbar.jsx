@@ -7,39 +7,10 @@ import { Mail, Notifications, SettingsPowerRounded } from '@mui/icons-material';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Icons, MobileBox, Search, StyledToolbar } from '../../lib/styles/navbar-user';
 
 
 
-const StyledToolbar = styled(Toolbar)({
-  display: "flex",
-  justifyContent: "space-between",
-
-});
-
-const Search = styled("div") (({theme}) => ({
-  backgroundColor: "white",
-  width: "40%",
-  borderRadius: '10px',
-  padding: "0 10px",
-}));
-
-
-const Icons = styled(Box) (({theme})=> ({
-  display: "none",
-  justifyContent:"space-between",
-  alignItems:"center",
-  gap:"20px",
-
-}));
-
-const MobileBox = styled(Box) (({theme})=> ({
-  display: "flex",
-  justifyContent:"space-between",
-  alignItems:"center",
-  gap:"10px",
-
-
-}));
 
 const Navbar = (props) => {
   const [open,setOpen] = useState(false);
@@ -50,6 +21,9 @@ const Navbar = (props) => {
           FAHIM
         </Typography>
         <AdbRoundedIcon sx={{ display: {xs:"block",sm:"none"} }}/>
+        <Search>
+          <InputBase placeholder='search...'/>
+        </Search>
         <Icons>
         <Badge badgeContent={4} color="error">
             <Mail />

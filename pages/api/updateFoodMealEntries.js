@@ -10,16 +10,8 @@ export default async (req, res) => {
   try {
     const JsonData = JSON.parse(req.body);
     const { apiType, ...data } = JsonData;
-    // const apiType = JSON.parse(req.body.apiType);
-    console.log(
-      "++++++++++++++++++++  UPDATE LIST ++++++++++++++++ :",
-      data,
-      "-----",
-      apiType
-    );
     const { calorieValue, ...rest } = data;
     const c = parseInt(calorieValue);
-    console.log("0000 :", data);
     if (apiType === "admin") {
       const newDataFoodEntry = await prisma.FoodEntry.update({
         where: { id: data.id },
@@ -34,7 +26,6 @@ export default async (req, res) => {
       res.send(newDataMealEntry);
     }
 
-    // res.status(200).json({d,message: "Successfully created"});
   } catch (e) {
     res.status(500).json({ message: "Something went wrong" });
   }

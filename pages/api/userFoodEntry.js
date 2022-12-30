@@ -8,8 +8,9 @@ export default async (req, res) => {
       }
 
     try {
-      const data = JSON.parse(req.body);
-      const d = await prisma.FoodEntry.create({data} );
+
+      const data = {...req.body.data};
+      const d = await prisma.FoodEntry.create({data});
       res.send(d);
     } catch (e) {
       res.status(500).json({e, message: "Something went wrong when adding food entries" });

@@ -6,14 +6,16 @@ import { Box, Paper, Typography } from "@mui/material";
 import FoodAddForm from "./FoodAddForm";
 import { FoodEntriesPerEmail } from "./FoodEntriesPerEmail";
 import { MealEntriesPerEmail } from "./MealEntriesPerEmail";
-import FoodEntryList from "./FoodEntryList";
 import { motion } from "framer-motion";
-import EntryListAdmin from "../Admin/EntryListAdmin";
+import FoodEntryList from "./FoodEntryList";
+import EntryListAdmin from "../admins/EntryListAdmin";
+import { updateMealCount } from "../../lib/utils";
+import UserHelperText from "./UserHelperText";
 
 const UserEntry = ({ sessionUser }) => {
-  const sessionEmail = sessionUser?.email;
+  const email = sessionUser?.email;
   const { foodEntriesPerEmail, error, isLoading, mutateFoodPerEmail } =
-    FoodEntriesPerEmail({ sessionEmail });
+    FoodEntriesPerEmail({ email });
 
   const {
     mealRows,
@@ -23,30 +25,19 @@ const UserEntry = ({ sessionUser }) => {
     breakfastCount,
     lunchCount,
     supperCount,
-  } = MealEntriesPerEmail({ sessionEmail });
+  } = MealEntriesPerEmail({ email });
 
-  const [isEClicked, setisEClicked] = useState(false);
-  const [MealDescription, setMealDescription] = useState([
+  const [isClicked, setisClicked] = useState(false);
+  const [mealDescription, setmealDescription] = useState([
     { mealID: "1", mealName: "Breakfast", currEntry: 0, maxEntry: 5 },
     { mealID: "2", mealName: "Lunch", currEntry: 0, maxEntry: 3 },
     { mealID: "3", mealName: "Supper", currEntry: 0, maxEntry: 2 },
   ]);
 
-  let tempList = [];
-  tempList = MealDescription?.map((mealItem) => {
-    let { mealName, ...rest } = mealItem;
-    let { currEntry, ...restMealDescription } = mealItem;
-    if (mealName === "Breakfast")
-      return { ...restMealDescription, currEntry: breakfastCount };
-
-    if (mealName === "Lunch")
-      return { ...restMealDescription, currEntry: lunchCount };
-
-    if (mealName === "Supper")
-      return { ...restMealDescription, currEntry: supperCount };
-  });
-  
-
+  const updatedMealCount = updateMealCount(mealDescription,breakfastCount,lunchCount,supperCount);
+  const foodFormDescription = "Here you can add foods with associated calorie value and other informations";
+  const foodDatagridDescription = " Here you can see all of your added food entries.";
+  const mealEntryDescription = "Here you can add,delete or update foods as meal entries. Maximum number of Breakfast is 5, Lunch is 3, Supper is 2";
   if (isLoadingMeal || isLoading) {
     return <div>Loading Wrapper</div>;
   }
@@ -67,12 +58,12 @@ const UserEntry = ({ sessionUser }) => {
             padding: "20px",
           }}
         >
-          {isEClicked === true ? (
+          {isClicked === true ? (
             <FoodAddForm
               sessionUser={sessionUser}
               foodEntries={foodEntriesPerEmail}
               mutateFoodPerEmail={mutateFoodPerEmail}
-              MealDescription={MealDescription}
+              mealDescription={mealDescription}
             />
           ) : (
             <Paper
@@ -90,7 +81,7 @@ const UserEntry = ({ sessionUser }) => {
                 transition: { duration: 0.7 },
               }}
               whileTap={{ scale: 0.85 }}
-              onClick={() => setisEClicked(true)}
+              onClick={() => setisClicked(true)}
             >
               <Typography sx={{ color: "#0f0303" }} variant="h5">
                 Get Food Entry Form
@@ -98,22 +89,8 @@ const UserEntry = ({ sessionUser }) => {
             </Paper>
           )}
         </Paper>
-        <Box
-          sx={{
-            flex: 5,
-            margin: "20px",
-            padding: "20px",
-            alignItems: "center",
-          }}
-        >
-          <Typography gutterBottom variant="h5" component="div">
-            Food Entry
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Here you can add foods with associated calorie value and other
-            informations.
-          </Typography>
-        </Box>
+        <UserHelperText title={"Food Entry"} desc={foodFormDescription} />
+
       </Box>
 
       <Box
@@ -133,20 +110,7 @@ const UserEntry = ({ sessionUser }) => {
         >
           <FoodEntryList foodEntries={foodEntriesPerEmail} />
         </Paper>
-        <Box
-          sx={{
-            flex: 3,
-            margin: "20px",
-            padding: "20px",
-          }}
-        >
-          <Typography gutterBottom variant="h5" component="div">
-            Your Food Entries
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Here you can see all of your added food entries.
-          </Typography>
-        </Box>
+        <UserHelperText title={"Your Food Entries"} desc={foodDatagridDescription} />
       </Box>
 
       <Box
@@ -156,21 +120,7 @@ const UserEntry = ({ sessionUser }) => {
           bgcolor: "#f5d0f7",
         }}
       >
-        <Box
-          sx={{
-            flex: 5,
-            margin: "20px",
-            padding: "20px",
-          }}
-        >
-          <Typography gutterBottom variant="h5" component="div">
-            Food Entry
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Here you can add foods with associated calorie value and other
-            informations.
-          </Typography>
-        </Box>
+        <UserHelperText title={"Meal Entry"} desc={mealEntryDescription} />
 
         <Paper
           elevation={10}
@@ -181,11 +131,11 @@ const UserEntry = ({ sessionUser }) => {
           }}
         >
           <EntryListAdmin
-            foodRows={mealRows}
-            mutateEntry={mutateMeal}
+            mealRows={mealRows}
+            mutateMeal={mutateMeal}
             apiType="user"
-            sessionUser={sessionUser}
-            MealDescription={tempList}
+            email={email}
+            mealDescription={updatedMealCount}
           />
         </Paper>
       </Box>
