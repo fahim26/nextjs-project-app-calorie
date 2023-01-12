@@ -5,7 +5,6 @@ import WrapperUser from "../components/Users/WrapperUser";
 
 export default function Home() {
   const { data: session, status } = useSession();
-  console.log("=============== SESSION : =============:",session);
   if (status === "loading") {
     return <p>Loading...</p>;
   }
@@ -21,12 +20,12 @@ export default function Home() {
 
   return (
     <Box>
-      
-      <Navbar signOut={signOut}/>
-
+      <Navbar signOut={signOut} />
+      <Box>
+        <p> {session.user.name} </p>
+        <button onClick={() => signOut()}>Sign Out</button>
+      </Box>
       <WrapperUser sessionUser={session.user} />
-      
-      
     </Box>
   );
 }

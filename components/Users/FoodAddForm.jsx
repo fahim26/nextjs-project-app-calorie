@@ -1,17 +1,20 @@
 // component for displaying food entry form and make a post request to add user inputted data to database
 
 import React, { useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik } from "formik";
 import { Alert, Button, Paper, Snackbar, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { foodYupSchema } from "../../helper-functions/food-yup-schema";
 import { motion } from "framer-motion";
-import { StyledContainer, StyledField, StyledForm } from "../../lib/styles/food-add";
+import {
+  StyledContainer,
+  StyledField,
+  StyledForm,
+} from "../../lib/styles/food-add";
 import { handleFoodAddition } from "../../helper-functions/food-add-helper";
 
-
 const FoodAddForm = (props) => {
-  const { sessionUser,foodEntries,mealDescription,mutateFoodPerEmail } = props;
+  const { sessionUser, mealDescription, mutateFoodPerEmail } = props;
   const [snackbar, setSnackbar] = useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
 
@@ -35,8 +38,14 @@ const FoodAddForm = (props) => {
           Meal: "Select Meal",
         }}
         validationSchema={foodYupSchema}
-        onSubmit={(values, { resetForm }) => 
-          handleFoodAddition(values, {resetForm},{mutateFoodPerEmail},sessionUser,{setSnackbar})
+        onSubmit={(values, { resetForm }) =>
+          handleFoodAddition(
+            values,
+            { resetForm },
+            { mutateFoodPerEmail },
+            sessionUser,
+            { setSnackbar }
+          )
         }
       >
         {({
@@ -57,41 +66,52 @@ const FoodAddForm = (props) => {
               )}
 
               {errors.foodName && touched.foodName && (
-                <Typography variant="caption" display="block" gutterBottom  color="#fa8484">
+                <Typography
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                  color="#fa8484"
+                >
                   {errors.foodName}
                 </Typography>
-              ) }
+              )}
             </StyledContainer>
 
             <StyledContainer err={true}>
               <StyledField name="calorieValue" />
               {!errors.calorieValue && touched.calorieValue && (
                 <CheckCircleIcon style={{ color: "#46eb67" }} />
-              )  }
+              )}
 
               {errors.calorieValue && touched.calorieValue && (
-                <Typography variant="caption" display="block" gutterBottom color="#fa8484">
+                <Typography
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                  color="#fa8484"
+                >
                   {errors.calorieValue}
                 </Typography>
-              )  }
+              )}
             </StyledContainer>
 
             <StyledContainer err={true}>
-              <StyledField
-                name="takenAt"
-                type="datetime-local"
-                
-              />
+              <StyledField name="takenAt" type="datetime-local" />
 
               {!errors.takenAt && touched.takenAt && (
                 <CheckCircleIcon style={{ color: "#46eb67" }} />
-              )  }
+              )}
 
               {errors.takenAt && touched.takenAt && (
-                <Typography variant="caption" display="block" gutterBottom color="#fa8484">
+                <Typography
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                  color="#fa8484"
+                >
                   {errors.takenAt}
                 </Typography>
-              )  }
+              )}
             </StyledContainer>
 
             <StyledContainer err={true}>
@@ -104,13 +124,18 @@ const FoodAddForm = (props) => {
               </StyledField>
               {!errors.Meal && touched.Meal && (
                 <CheckCircleIcon style={{ color: "#46eb67" }} />
-              )  }
+              )}
 
               {errors.Meal && touched.Meal && (
-                <Typography variant="caption" display="block" gutterBottom color="#fa8484">
+                <Typography
+                  variant="caption"
+                  display="block"
+                  gutterBottom
+                  color="#fa8484"
+                >
                   {errors.Meal}
                 </Typography>
-              )  }
+              )}
             </StyledContainer>
 
             <Button
@@ -147,4 +172,3 @@ const FoodAddForm = (props) => {
   );
 };
 export default FoodAddForm;
-
