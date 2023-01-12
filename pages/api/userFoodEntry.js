@@ -9,7 +9,6 @@ export default async (req, res) => {
 
   try {
     const data = { ...req.body.data };
-    console.log(data);
     const d = await prisma.FoodEntry.create({ data });
     res.send(d);
   } catch (e) {
