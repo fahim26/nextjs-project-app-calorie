@@ -48,7 +48,7 @@ export const handleFoodAddition = (
 ) => {
   const { takenAt, calorieValue, ...restData } = values;
   const calValueInt = parseInt(calorieValue);
-  const { mealName, ...exceptMeal } = restData;
+  const { mealName } = restData;
 
   const timeUnix = new Date(String(takenAt));
   const UpdatedTime = timeUnix.getTime() / 1000;

@@ -5,27 +5,17 @@ import { useState } from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import FoodAddForm from "./FoodAddForm";
 import { FoodEntriesPerEmail } from "./FoodEntriesPerEmail";
-import { MealEntriesPerEmail } from "./MealEntriesPerEmail";
 import { motion } from "framer-motion";
-
 
 const UserEntry = ({ sessionUser }) => {
   const sessionEmail = sessionUser?.email;
-  const { foodEntriesPerEmail, error, isLoading, mutateFoodPerEmail } =
-    FoodEntriesPerEmail({ sessionEmail });
-
-  const {
-    mealRows,
-    isLoadingMeal,
-    errorMealPerEmail,
-    mutateMeal,
-    breakfastCount,
-    lunchCount,
-    supperCount,
-  } = MealEntriesPerEmail({ sessionEmail });
+  const { foodEntriesPerEmail, mutateFoodPerEmail } = FoodEntriesPerEmail({
+    sessionEmail,
+  });
 
   const [isClicked, setisClicked] = useState(false);
-  const [mealDescription, setmealDescription] = useState([
+
+  const [mealDescription] = useState([
     { mealID: "1", mealName: "Breakfast", currEntry: 0, maxEntry: 5 },
     { mealID: "2", mealName: "Lunch", currEntry: 0, maxEntry: 3 },
     { mealID: "3", mealName: "Supper", currEntry: 0, maxEntry: 2 },
@@ -47,14 +37,15 @@ const UserEntry = ({ sessionUser }) => {
             padding: "20px",
           }}
         >
-          {isClicked === true ? (
+          {isClicked === true && (
             <FoodAddForm
               sessionUser={sessionUser}
               foodEntries={foodEntriesPerEmail}
               mutateFoodPerEmail={mutateFoodPerEmail}
               mealDescription={mealDescription}
             />
-          ) : (
+          )}
+          {isClicked !== true && (
             <Paper
               elevation={10}
               sx={{
@@ -95,11 +86,8 @@ const UserEntry = ({ sessionUser }) => {
           </Typography>
         </Box>
       </Box>
-
-      
     </Box>
   );
 };
 
 export default UserEntry;
-

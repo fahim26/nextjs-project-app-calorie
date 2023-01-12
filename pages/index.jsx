@@ -20,15 +20,12 @@ export default function Home() {
 
   return (
     <Box>
-      
-      <Navbar signOut={signOut}/>
+      <Navbar signOut={signOut} />
       <Box>
         <p> {session.user.name} </p>
         <button onClick={() => signOut()}>Sign Out</button>
       </Box>
       <WrapperUser sessionUser={session.user} />
-      
-      
     </Box>
   );
 }

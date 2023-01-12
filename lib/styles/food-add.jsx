@@ -1,4 +1,3 @@
-
 import { Formik, Form, Field } from "formik";
 import styled from "@emotion/styled";
 
@@ -25,6 +24,3 @@ export const StyledField = styled(Field)(() => ({
   border: "1px solid #ccc",
   borderRadius: "5px",
 }));
-
-
-
