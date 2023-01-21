@@ -86,6 +86,39 @@ const UserEntry = ({ sessionUser }) => {
           </Typography>
         </Box>
       </Box>
+
+      <Box
+        sx={{
+          marginTop: "20px",
+          display: "flex",
+          bgcolor: "#f5d0f7",
+        }}
+      >
+        <Paper
+          elevation={10}
+          sx={{
+            flex: 7,
+            margin: "20px",
+            padding: "20px",
+          }}
+        >
+          <FoodEntryList foodEntries={foodEntriesPerEmail} />
+        </Paper>
+        <Box
+          sx={{
+            flex: 3,
+            margin: "20px",
+            padding: "20px",
+          }}
+        >
+          <Typography gutterBottom variant="h5" component="div">
+            Your Food Entries
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Here you can see all of your added food entries.
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   );
 };

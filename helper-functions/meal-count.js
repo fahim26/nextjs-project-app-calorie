@@ -1,5 +1,5 @@
 const getBreakfastFromMealEntries = (mealEntries) =>
-  mealEntriesPerEmail.filter((item) => item.Meal === "Breakfast").length;
+  mealEntries.filter((item) => item.Meal === "Breakfast").length;
 
 export const mealCount = (mealEntriesPerEmail) => {
   if (!mealEntriesPerEmail) {
