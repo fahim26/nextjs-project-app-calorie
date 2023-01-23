@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 export default async (req, res) => {
   if (req.method === "PUT") {
     const deleteEntryId = JSON.parse(req.body);
-    
+
     try {
       const deleteUser = await prisma.MealEntry.delete({
         where: {

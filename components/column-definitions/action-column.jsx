@@ -18,6 +18,7 @@ export const updateActionDef = (
   mealRows,
   addedRows
 ) => {
+  
   const actionColumnDef = {
     field: "actions",
     type: "actions",

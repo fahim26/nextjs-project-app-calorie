@@ -1,9 +1,8 @@
 // component for displaying food entry form and make a post request to add user inputted data to database
 
 import React, { useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik} from "formik";
 import { Alert, Button, Paper, Snackbar, Typography } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { foodYupSchema } from "../../helper-functions/food-yup-schema";
 import { motion } from "framer-motion";
 import {
@@ -12,7 +11,6 @@ import {
   StyledForm,
 } from "../../lib/styles/food-add";
 import { handleFoodAddition } from "../../helper-functions/food-add-helper";
-import { FoodEntriesPerEmail } from "./FoodEntriesPerEmail";
 import FoodFormErrorHandler from "./FoodFormErrorHandler";
 import FoodFormHelper from "./FoodFormHelper";
 
@@ -62,15 +60,6 @@ const FoodAddForm = (props) => {
           values,
         }) => (
           <StyledForm>
-            {/* <StyledContainer err={true}>
-              <StyledField name="foodName" />
-
-              <FoodFormErrorHandler
-                error={errors.foodName}
-                isTouched={touched.foodName}
-              />
-            </StyledContainer> */}
-
             <FoodFormHelper
               nameField="foodName"
               error={errors.foodName}

@@ -20,7 +20,6 @@ const UserEntry = ({ sessionUser }) => {
   const {
     mealRows,
     isLoadingMeal,
-    errorMealPerEmail,
     mutateMeal,
     breakfastCount,
     lunchCount,
@@ -34,10 +33,18 @@ const UserEntry = ({ sessionUser }) => {
     { mealID: "3", mealName: "Supper", currEntry: 0, maxEntry: 2 },
   ]);
 
-  const updatedMealCount = updateMealCount(mealDescription,breakfastCount,lunchCount,supperCount);
-  const foodFormDescription = "Here you can add foods with associated calorie value and other informations";
-  const foodDatagridDescription = " Here you can see all of your added food entries.";
-  const mealEntryDescription = "Here you can add,delete or update foods as meal entries. Maximum number of Breakfast is 5, Lunch is 3, Supper is 2";
+  const updatedMealCount = updateMealCount(
+    mealDescription,
+    breakfastCount,
+    lunchCount,
+    supperCount
+  );
+  const foodFormDescription =
+    "Here you can add foods with associated calorie value and other informations";
+  const foodDatagridDescription =
+    " Here you can see all of your added food entries.";
+  const mealEntryDescription =
+    "Here you can add,delete or update foods as meal entries. Maximum number of Breakfast is 5, Lunch is 3, Supper is 2";
   if (isLoadingMeal || isLoading) {
     return <div>Loading Wrapper</div>;
   }
@@ -90,7 +97,6 @@ const UserEntry = ({ sessionUser }) => {
           )}
         </Paper>
         <UserHelperText title={"Food Entry"} desc={foodFormDescription} />
-
       </Box>
 
       <Box
@@ -110,7 +116,10 @@ const UserEntry = ({ sessionUser }) => {
         >
           <FoodEntryList foodEntries={foodEntriesPerEmail} />
         </Paper>
-        <UserHelperText title={"Your Food Entries"} desc={foodDatagridDescription} />
+        <UserHelperText
+          title={"Your Food Entries"}
+          desc={foodDatagridDescription}
+        />
       </Box>
 
       <Box

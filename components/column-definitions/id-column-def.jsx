@@ -4,5 +4,5 @@ export const idColumnDef = {
     width: 100,
     headerClassName: "super-app-theme--header",
     headerAlign: "center",
-  };
+};
   

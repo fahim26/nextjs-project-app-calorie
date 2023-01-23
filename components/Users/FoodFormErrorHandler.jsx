@@ -9,7 +9,6 @@ const FoodFormErrorHandler = (props) => {
     {!error && isTouched && (
         <CheckCircleIcon style={{ color: "#46eb67" }} />
       )}
-
       {error && isTouched && (
         <Typography variant="caption" display="block" gutterBottom  color="#fa8484">
           {error}

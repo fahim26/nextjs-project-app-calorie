@@ -1,4 +1,3 @@
-
 export const processRowUpdate = async (
   newRow,
   setAddedRows,
@@ -6,7 +5,6 @@ export const processRowUpdate = async (
   mutateEntry,
   setSnackbar
 ) => {
-
   const timeUnix = new Date(String(newRow.takenAt));
   const UpdatedTime = timeUnix.getTime() / 1000;
   const updatedRow = {

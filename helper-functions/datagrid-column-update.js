@@ -14,7 +14,6 @@ export const handleEditClick =
     }
   };
 
-
 export const handleDeleteClick = (id, mutateMeal, mealRows) => async () => {
   const filteredRows = mealRows.filter((row) => row.id !== id)
   try {

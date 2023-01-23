@@ -21,9 +21,7 @@ const saveFoodEntry = async (
         const responseFromApi = await axios.post("/api/userFoodEntry", {
           data: dataWithoutId,
         });
-
         const addedRow = responseFromApi.data;
-
         setSnackbar({
           children: "Entry successfully saved",
           severity: "success",
@@ -48,7 +46,6 @@ export const handleFoodAddition = (
   const { takenAt, calorieValue, ...restData } = values;
   const calValueInt = parseInt(calorieValue);
   const { mealName, ...exceptMeal } = restData;
-
   const timeUnix = new Date(String(takenAt));
   const UpdatedTime = timeUnix.getTime() / 1000;
   const dataWithUpdatedTime = {

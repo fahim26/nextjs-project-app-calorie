@@ -1,23 +1,18 @@
 import React from "react";
-import {useGridApiContext} from "@mui/x-data-grid";
+import { useGridApiContext } from "@mui/x-data-grid";
 import PropTypes from "prop-types";
 
-import {
-  Box,
-  MenuItem,
-  TextField,
-} from "@mui/material";
+import { Box, MenuItem, TextField } from "@mui/material";
 
 export function DropDownMealMenu(props) {
-  const {params,mealDescription} = props;
+  const { params, mealDescription } = props;
   const paramValue = props.params;
-  const { id, value, field } = {...paramValue};
+  const { id, value, field } = { ...paramValue };
   const apiRef = useGridApiContext();
 
   const handleChange = (event, meal) => {
     apiRef?.current?.setEditCellValue({ id, field, value: meal.props.value });
   };
-
 
   return (
     <Box
@@ -25,7 +20,7 @@ export function DropDownMealMenu(props) {
         bgcolor: "#a7c4f2",
       }}
     >
-            <TextField
+      <TextField
         id="country-code-select"
         select
         value={value}
@@ -65,8 +60,7 @@ export function DropDownMealMenu(props) {
             </MenuItem>
           );
         })}
-      </ TextField>
-
+      </TextField>
     </Box>
   );
 }

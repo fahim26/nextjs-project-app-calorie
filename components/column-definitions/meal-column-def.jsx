@@ -30,5 +30,4 @@ export const updateMealDef = (mealDescription) => {
     },
   };
   return mealColumnDef;
-
 };

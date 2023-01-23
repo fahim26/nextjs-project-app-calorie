@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
 export default async (req, res) => {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method dis-allowed" });
   }
-
   try {
     const foodEntriesPerEmail = await prisma.FoodEntry.findMany({
       where: {

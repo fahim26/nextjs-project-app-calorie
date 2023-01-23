@@ -13,7 +13,6 @@ const ColumnMeal = (
   addedRows,
   mealDescription
 ) => {
-
   const actionColumnDef = updateActionDef(
     rowModesModel,
     setRowModesModel,

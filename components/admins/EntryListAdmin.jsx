@@ -14,7 +14,6 @@ import ColumnMeal from "../Users/ColumnMeal";
 import { preprocessFoods } from "../../lib/utils";
 import { processRowUpdate } from "../../helper-functions/meal-datagrid-update";
 
-
 EditToolbar.propTypes = {
   setRowModesModel: PropTypes.func.isRequired,
   setAddedRows: PropTypes.func.isRequired,
@@ -28,21 +27,19 @@ EditToolbar.propTypes = {
 };
 
 const EntryListAdmin = (props) => {
-  const {mealRows,mutateMeal,apiType,email,mealDescription} = props;
+  const { mealRows, mutateMeal, apiType, email, mealDescription } = props;
   const [addedRows, setAddedRows] = useState();
   const [rowModesModel, setRowModesModel] = useState({});
   const [snackbar, setSnackbar] = useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
   const newFoods = preprocessFoods(mealRows);
-  const rowsWithAddedDemo=[];
+  const rowsWithAddedDemo = [];
   if (typeof addedRows === "undefined") {
     rowsWithAddedDemo = newFoods;
   } else {
     if (props.mealRows?.slice(-1).id !== addedRows.id)
       rowsWithAddedDemo = [...newFoods, addedRows];
   }
-
-
 
   const handleRowEditStart = (params, event) => {
     event.defaultMuiPrevented = true;
@@ -108,12 +105,12 @@ const EntryListAdmin = (props) => {
               newRow,
               setAddedRows,
               emailUser,
-              mutateMeal,setSnackbar
+              mutateMeal,
+              setSnackbar
             );
             return updatedFood;
           }}
           onProcessRowUpdateError={handleProcessRowUpdateError}
-          
           components={{
             Toolbar: EditToolbar,
           }}

@@ -15,7 +15,6 @@ export const FoodEntriesPerEmail = ( props ) => {
   const {
     data: foodEntriesPerEmail,
     error,
-    isLoading,
     mutate: mutateFoodPerEmail,
   } = useSWR([foodFetchingURL,props.email], fetcherForUserInfo);
  

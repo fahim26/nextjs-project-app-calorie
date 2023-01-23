@@ -1,14 +1,10 @@
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
-import {
-  GridRowModes,
-  GridToolbarContainer,
-} from "@mui/x-data-grid";
+import { GridRowModes, GridToolbarContainer } from "@mui/x-data-grid";
 import axios from "axios";
 import React, { useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
-
 
 export default function EditToolbar(props) {
   const {
@@ -23,15 +19,15 @@ export default function EditToolbar(props) {
   } = props;
   const { mutate } = useSWRConfig();
 
-
   const [mealCode, setMealCode] = React.useState("");
 
   const handleChange = (event) => {
     setMealCode(event.target.value);
   };
-  
+
   const handleClick = (mealRows) => async () => {
-    const new_id = mealRows?.length !== 0 ? Math.max(...mealRows?.map((o) => o.id)) + 1 : 1;
+    const new_id =
+      mealRows?.length !== 0 ? Math.max(...mealRows?.map((o) => o.id)) + 1 : 1;
 
     const new_row = {
       id: new_id,

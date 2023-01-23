@@ -25,7 +25,6 @@ export default async (req, res) => {
       });
       res.send(newDataMealEntry);
     }
-
   } catch (e) {
     res.status(500).json({ message: "Something went wrong" });
   }
