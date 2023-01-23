@@ -1,5 +1,4 @@
 // reusable component that calls /api/mealEntriesPerEmail api to get  meal entries per email
-
 import axios from "axios";
 import useSWR from "swr";
 import { mealCount } from "../../helper-functions/meal-count";
@@ -15,7 +14,7 @@ export const MealEntriesPerEmail = (props) => {
     data: mealEntriesPerEmail,
     error,
     mutate,
-  } = useSWR([mealFetchingURL, props.sessionEmail], fetcherForUserInfo);
+  } = useSWR([mealFetchingURL, props.email], fetcherForUserInfo);
   const [brkfst, lunch, supper] = mealCount(mealEntriesPerEmail);
   return {
     mealRows: mealEntriesPerEmail,

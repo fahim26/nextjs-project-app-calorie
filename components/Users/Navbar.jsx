@@ -48,10 +48,12 @@ const Navbar = (props) => {
         </MobileBox>
       </StyledToolbar>
       <Menu
+        // sx={{ display: { xs: 'none', md: 'block' } }}
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
         open={open}
         onClose={(e) => setOpen(false)}
+        // onClose={handleClose}
         anchorOrigin={{
           vertical: "top",
           horizontal: "right",

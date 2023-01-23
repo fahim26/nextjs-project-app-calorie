@@ -1,9 +1,8 @@
 // component for displaying food entry form and make a post request to add user inputted data to database
 
 import React, { useState } from "react";
-import { Formik } from "formik";
+import { Formik} from "formik";
 import { Alert, Button, Paper, Snackbar, Typography } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { foodYupSchema } from "../../helper-functions/food-yup-schema";
 import { motion } from "framer-motion";
 import {
@@ -12,6 +11,8 @@ import {
   StyledForm,
 } from "../../lib/styles/food-add";
 import { handleFoodAddition } from "../../helper-functions/food-add-helper";
+import FoodFormErrorHandler from "./FoodFormErrorHandler";
+import FoodFormHelper from "./FoodFormHelper";
 
 const FoodAddForm = (props) => {
   const { sessionUser, mealDescription, mutateFoodPerEmail } = props;
@@ -58,43 +59,16 @@ const FoodAddForm = (props) => {
           values,
         }) => (
           <StyledForm>
-            <StyledContainer err={true}>
-              <StyledField name="foodName" />
-
-              {!errors.foodName && touched.foodName && (
-                <CheckCircleIcon style={{ color: "#46eb67" }} />
-              )}
-
-              {errors.foodName && touched.foodName && (
-                <Typography
-                  variant="caption"
-                  display="block"
-                  gutterBottom
-                  color="#fa8484"
-                >
-                  {errors.foodName}
-                </Typography>
-              )}
-            </StyledContainer>
-
-            <StyledContainer err={true}>
-              <StyledField name="calorieValue" />
-              {!errors.calorieValue && touched.calorieValue && (
-                <CheckCircleIcon style={{ color: "#46eb67" }} />
-              )}
-
-              {errors.calorieValue && touched.calorieValue && (
-                <Typography
-                  variant="caption"
-                  display="block"
-                  gutterBottom
-                  color="#fa8484"
-                >
-                  {errors.calorieValue}
-                </Typography>
-              )}
-            </StyledContainer>
-
+            <FoodFormHelper
+              nameField="foodName"
+              error={errors.foodName}
+              isTouched={touched.foodName}
+            />
+             <FoodFormHelper
+              nameField="calorieValue"
+              error={errors.calorieValue}
+              isTouched={touched.calorieValue}
+            />
             <StyledContainer err={true}>
               <StyledField name="takenAt" type="datetime-local" />
 

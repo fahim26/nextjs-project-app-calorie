@@ -19,8 +19,8 @@ export default function Home() {
   }
 
   return (
-    <Box>     
-      <Navbar signOut={signOut}/>
+    <Box>
+      <Navbar signOut={signOut} />
       <WrapperUser sessionUser={session.user} />
     </Box>
   );
