@@ -5,3 +5,4 @@ export const mealEntrySchema = {
     calSchema: /^\d*[1-9]+\d*$/,
     mealSchema: /^.*(Breakfast|Supper|Lunch).*$/,
   };
+  

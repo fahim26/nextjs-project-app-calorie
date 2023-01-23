@@ -22,5 +22,3 @@ export const foodYupSchema = Yup.object().shape({
         "Select From Menu According to Max Number"
       ),
   });
-
-  

@@ -30,4 +30,3 @@ export const MobileBox = styled(Box) (({theme})=> ({
 
 
 }));
-

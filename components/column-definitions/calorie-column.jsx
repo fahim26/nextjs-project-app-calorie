@@ -13,3 +13,4 @@ export const calorieColumnDef = {
       return { ...params.props, error: !isValidCalorie };
     },
   }
+  

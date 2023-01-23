@@ -25,6 +25,3 @@ export const StyledField = styled(Field)(() => ({
   border: "1px solid #ccc",
   borderRadius: "5px",
 }));
-
-
-

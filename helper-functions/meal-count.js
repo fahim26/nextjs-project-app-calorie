@@ -18,4 +18,3 @@ export const mealCount = (mealEntriesPerEmail) => {
       }
       return [brkfst,lunch,supper];
 }
-

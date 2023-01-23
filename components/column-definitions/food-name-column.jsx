@@ -14,3 +14,4 @@ export const foodNameColumnDef = {
       return { ...params.props, error: !isValidFoodName };
     },
   };
+  
