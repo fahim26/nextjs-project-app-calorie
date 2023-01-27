@@ -14,7 +14,7 @@ import UserHelperText from "./UserHelperText";
 
 const UserEntry = ({ sessionUser }) => {
   const email = sessionUser?.email;
-  const { foodEntriesPerEmail, error, isLoading, mutateFoodPerEmail } =
+  const { foodEntriesPerEmail, isLoading, mutateFoodPerEmail } =
     FoodEntriesPerEmail({ email });
 
   const {

@@ -2,14 +2,13 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import EditToolbar from "./EditToolbar";
 
-import { GridRowModes, DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import axios from "axios";
+import {DataGrid} from "@mui/x-data-grid";
 import React, { useState } from "react";
 
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-import { Divider, LinearProgress, Paper } from "@mui/material";
+import { Divider, Paper } from "@mui/material";
 import ColumnMeal from "../Users/ColumnMeal";
 import { preprocessFoods } from "../../lib/utils";
 import { processRowUpdate } from "../../helper-functions/meal-datagrid-update";
@@ -49,7 +48,6 @@ const EntryListAdmin = (props) => {
   };
 
   const handleProcessRowUpdateError = React.useCallback((error) => {
-    console.error(error);
     setSnackbar({ children: "Field cannot be empty", severity: "error" });
   }, []);
 
@@ -62,7 +60,7 @@ const EntryListAdmin = (props) => {
     addedRows,
     mealDescription
   );
-  console.log("==================== END EEntry List Admin ", columns);
+
   const width = props.apiType === "admin" ? 1300 : 900;
   const height = props.apiType === "admin" ? 600 : 400;
 
@@ -100,7 +98,7 @@ const EntryListAdmin = (props) => {
           onRowEditStop={handleRowEditStop}
           processRowUpdate={async (newRow) => {
             const emailUser = props.email;
-            console.log("Process Row Update :", emailUser);
+            
             const updatedFood = await processRowUpdate(
               newRow,
               setAddedRows,

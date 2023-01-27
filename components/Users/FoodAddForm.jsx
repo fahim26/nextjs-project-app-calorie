@@ -16,7 +16,7 @@ import FoodFormErrorHandler from "./FoodFormErrorHandler";
 import FoodFormHelper from "./FoodFormHelper";
 
 const FoodAddForm = (props) => {
-  const { sessionUser, mealDescription, mutateFoodPerEmail } = props;
+  const { sessionUser, mutateFoodPerEmail,mealDescription } = props;
   const [snackbar, setSnackbar] = useState(null);
   const handleCloseSnackbar = () => setSnackbar(null);
 
@@ -57,7 +57,6 @@ const FoodAddForm = (props) => {
           dirty,
           errors,
           touched,
-          values,
         }) => (
           <StyledForm>
             <FoodFormHelper
