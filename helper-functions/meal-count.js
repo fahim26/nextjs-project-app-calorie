@@ -1,15 +1,16 @@
+const getMealCount = (mealEntriesPerEmail, mealName) => {
+  const meal_count = mealEntriesPerEmail.filter(
+    (item) => item.Meal === mealName
+  ).length;
+  return meal_count;
+};
+
 export const mealCount = (mealEntriesPerEmail) => {
-  const [brkfst, lunch, supper] = [0, 0, 0];
-  if (mealEntriesPerEmail) {
-    brkfst = mealEntriesPerEmail.filter(
-      (item) => item.Meal === "Breakfast"
-    ).length;
-
-    lunch = mealEntriesPerEmail.filter((item) => item.Meal === "Lunch").length;
-
-    supper = mealEntriesPerEmail.filter(
-      (item) => item.Meal === "Supper"
-    ).length;
+  if (!mealEntriesPerEmail) {
+    return [0, 0, 0];
   }
-  return [brkfst, lunch, supper];
+  const breakfastCount = getMealCount(mealEntriesPerEmail, "Breakfast");
+  const lunchCount = getMealCount(mealEntriesPerEmail, "Lunch");
+  const supperCount = getMealCount(mealEntriesPerEmail, "Supper");
+  return [breakfastCount, lunchCount, supperCount];
 };

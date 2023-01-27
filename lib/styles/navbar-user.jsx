@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, Toolbar, Typography } from "@mui/material";
+import { Box, Toolbar} from "@mui/material";
 import styled from "@emotion/styled";
 export const StyledToolbar = styled(Toolbar)({
   display: "flex",

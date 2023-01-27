@@ -2,7 +2,7 @@
 
 
 import axios from "axios";
-import useSWR, { mutate, useSWRConfig } from "swr";
+import useSWR from "swr";
 import { foodFetchingURL } from "../../lib/urls/food";
 
 const fetcherForUserInfo = (url, userEmail) =>
